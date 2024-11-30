@@ -1,0 +1,30 @@
+syntax = "proto3";
+package user;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "/proto";
+
+message User {
+    enum UserType {
+        SILVER = 0;
+        GOLD = 1;
+        DIAMOND = 2;
+    }
+
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+    UserType type = 4;
+
+    message Address {
+        string country = 1;
+        string state = 2;
+    }
+
+    repeated Address addresses = 5;
+    google.protobuf.Timestamp last_updated = 6;
+}
+
+message Users {
+    repeated User users = 1;
+}
